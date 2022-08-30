@@ -9,10 +9,16 @@ import { wrapperEnv } from './build/utils';
 import { createVitePlugins } from './build/vite/plugin';
 import { OUTPUT_DIR } from './build/constant';
 
+/**
+ * path.resolve() 把一个路径或路径片段的序列解析为一个绝对路径
+ */
 function pathResolve(dir: string) {
   return resolve(process.cwd(), '.', dir);
 }
 
+/**
+ * 项目信息
+ */
 const { dependencies, devDependencies, name, version } = pkg;
 const __APP_INFO__ = {
   pkg: { dependencies, devDependencies, name, version },
@@ -20,15 +26,28 @@ const __APP_INFO__ = {
 };
 
 export default ({ command, mode }: ConfigEnv): UserConfig => {
+  /**
+   *  process.cwd() 当前工作目录
+   * __dirname 代码所在目录
+   */
   const root = process.cwd();
 
+  /**
+   * loadEnv 类型签名
+   * 加载envDir中的.env文件。默认情况下只有前缀为VITE_ 会被加载。
+   */
   const env = loadEnv(mode, root);
 
-  // The boolean type read by loadEnv is a string. This function can be converted to boolean type
+  /**
+   * loadEnv 读取的布尔类型是一个字符串 需要使用此函数进行转换
+   */
   const viteEnv = wrapperEnv(env);
 
   const { VITE_PORT, VITE_PUBLIC_PATH, VITE_PROXY, VITE_DROP_CONSOLE } = viteEnv;
 
+  /**
+   * command 命令 'build' | 'serve'
+   */
   const isBuild = command === 'build';
 
   return {
