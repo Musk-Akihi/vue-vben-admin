@@ -59,6 +59,9 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
      * 项目根目录（index.html文件所在的位置）
      */
     root,
+    /**
+     * 配置解析器
+     */
     resolve: {
       /**
        * alias 会被传递到 @rollup/plugin-alias 作为 entries 的选项
