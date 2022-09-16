@@ -6,7 +6,9 @@ import type { PluginOption } from 'vite';
 import compressPlugin from 'vite-plugin-compression';
 
 export function configCompressPlugin(
+  // 压缩方式
   compress: 'gzip' | 'brotli' | 'none',
+  // 压缩后是否删除源文件
   deleteOriginFile = false,
 ): PluginOption | PluginOption[] {
   const compressList = compress.split(',');

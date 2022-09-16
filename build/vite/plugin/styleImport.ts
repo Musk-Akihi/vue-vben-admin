@@ -9,6 +9,7 @@ export function configStyleImportPlugin(_isBuild: boolean) {
   //   return [];
   // }
   const styleImportPlugin = createStyleImportPlugin({
+    // 要导入的库列表
     libs: [
       {
         libraryName: 'ant-design-vue',

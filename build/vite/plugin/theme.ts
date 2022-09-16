@@ -22,6 +22,7 @@ export function configThemePlugin(isBuild: boolean): PluginOption[] {
   });
   const plugin = [
     viteThemePlugin({
+      // 自定义选择器转换
       resolveSelector: (s) => {
         s = s.trim();
         switch (s) {
@@ -43,6 +44,7 @@ export function configThemePlugin(isBuild: boolean): PluginOption[] {
         }
         return s.startsWith('[data-theme') ? s : `[data-theme] ${s}`;
       },
+      // 如果 css 内包含在该数组内的颜色值，则会抽取出 css
       colorVariables: [...getThemeColors(), ...colors],
     }),
     antdDarkThemePlugin({
